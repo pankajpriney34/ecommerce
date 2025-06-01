@@ -1,0 +1,31 @@
+<div class="thank-you-container">
+  <h2>Thank You!</h2>
+
+  <p>Your order <strong>#{{ orderId }}</strong> has been processed.</p>
+
+  <div *ngIf="status === 'approved'" class="status success">
+    ✅ Transaction Approved!
+  </div>
+  <div *ngIf="status === 'declined'" class="status declined">
+    ❌ Transaction Declined
+  </div>
+  <div *ngIf="status === 'error'" class="status error">
+    ⚠ Transaction Failed due to Gateway Error
+  </div>
+
+  <hr />
+
+  <h3>Customer Details</h3>
+  <p><strong>Name:</strong> {{ customer.fullName }}</p>
+  <p><strong>Email:</strong> {{ customer.email }}</p>
+  <p><strong>Phone:</strong> {{ customer.phone }}</p>
+  <p><strong>Address:</strong> {{ customer.address }}, {{ customer.city }}, {{ customer.state }} - {{ customer.zip }}</p>
+
+  <hr />
+
+  <h3>Product Summary</h3>
+  <p><strong>Product:</strong> {{ product.product.title }}</p>
+  <p><strong>Variant:</strong> {{ product.selectedVariant }}</p>
+  <p><strong>Quantity:</strong> {{ product.quantity }}</p>
+  <p><strong>Total:</strong> {{ product.product.price * product.quantity | currency:'USD' }}</p>
+</div>

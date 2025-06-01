@@ -1,0 +1,42 @@
+.thank-you-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+  text-align: left;
+}
+
+h2 {
+  color: #1976d2;
+  text-align: center;
+}
+
+.status {
+  font-weight: bold;
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.status.success {
+  background-color: #c8e6c9;
+  color: #2e7d32;
+}
+
+.status.declined {
+  background-color: #ffcdd2;
+  color: #c62828;
+}
+
+.status.error {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+hr {
+  margin: 1.5rem 0;
+}

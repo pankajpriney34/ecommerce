@@ -1,0 +1,78 @@
+<div class="checkout-container">
+  <h2>Checkout</h2>
+
+  <!-- 🧾 Form Starts -->
+  <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+
+    <!-- Full Name -->
+    <label>Full Name</label>
+    <input type="text" formControlName="fullName" />
+    <div *ngIf="checkoutForm.get('fullName')?.invalid && checkoutForm.get('fullName')?.touched">
+      Name is required.
+    </div>
+
+    <!-- Email -->
+    <label>Email</label>
+    <input type="email" formControlName="email" />
+    <div *ngIf="checkoutForm.get('email')?.errors?.['required'] && checkoutForm.get('email')?.touched">
+      Email is required.
+    </div>
+    <div *ngIf="checkoutForm.get('email')?.errors?.['email'] && checkoutForm.get('email')?.touched">
+      Invalid email format.
+    </div>
+
+    <!-- Phone -->
+    <label>Phone Number</label>
+    <input type="tel" formControlName="phone" />
+    <div *ngIf="checkoutForm.get('phone')?.invalid && checkoutForm.get('phone')?.touched">
+      Phone must be 10 digits.
+    </div>
+
+    <!-- Address -->
+    <label>Address</label>
+    <input type="text" formControlName="address" />
+
+    <!-- City, State, Zip -->
+    <label>City</label>
+    <input type="text" formControlName="city" />
+    <label>State</label>
+    <input type="text" formControlName="state" />
+    <label>Zip Code</label>
+    <input type="text" formControlName="zip" />
+
+    <!-- Card Number -->
+    <label>Card Number</label>
+    <input type="text" formControlName="cardNumber" maxlength="16" />
+    <div *ngIf="checkoutForm.get('cardNumber')?.invalid && checkoutForm.get('cardNumber')?.touched">
+      Card must be 16 digits.
+    </div>
+
+    <!-- Expiry Date -->
+    <label>Expiry Date</label>
+    <input type="date" formControlName="expiry" />
+    <div *ngIf="checkoutForm.get('expiry')?.errors?.['invalidDate'] && checkoutForm.get('expiry')?.touched">
+      Expiry must be a future date.
+    </div>
+
+    <!-- CVV -->
+    <label>CVV</label>
+    <input type="text" formControlName="cvv" maxlength="3" />
+    <div *ngIf="checkoutForm.get('cvv')?.invalid && checkoutForm.get('cvv')?.touched">
+      CVV must be 3 digits.
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit">Place Order</button>
+  </form>
+
+  <!-- 📦 Order Summary -->
+  <div class="order-summary" *ngIf="productData?.product">
+    <h3>Order Summary</h3>
+    <p><strong>Product:</strong> {{ productData.product.title }}</p>
+    <p><strong>Variant:</strong> {{ productData.selectedVariant }}</p>
+    <p><strong>Quantity:</strong> {{ productData.quantity }}</p>
+    <p><strong>Price:</strong> {{ productData.product.price | currency:'USD' }}</p>
+    <p><strong>Subtotal:</strong> {{ productData.product.price * productData.quantity | currency:'USD' }}</p>
+  </div>
+</div>
+
